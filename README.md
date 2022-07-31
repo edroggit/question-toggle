@@ -1,3 +1,7 @@
+Limitations:
+Solution is not responsive down to 320px.
+If you are to refresh the page you can see new questions should be drawn in at random, however i have not included a refresh button on the page and it may reload the same question as there are only 4 questions in my "database".
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
