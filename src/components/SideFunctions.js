@@ -10,7 +10,7 @@ SideFunctions.howEqual = function (array1, array2) {
       totalSame++;
     }
   }
-  return totalSame / array1.length;
+  return totalSame;
 };
 
 // will be used to check if truthPosition is equal to toggle positions- used to update validation
@@ -29,15 +29,33 @@ SideFunctions.areEqual = function (array1, array2) {
 
 // changing background and functionality of page
 SideFunctions.pageChange = function (array1, array2) {
+  let pageStyle;
   let howClose = SideFunctions.howEqual(array1, array2);
-  if (howClose < 1 && howClose > 0) {
-    document.body.classList.add("closeness");
-  } else if (howClose == 0) {
-    document.body.classList.remove("closeness");
-  } else if (howClose == 1) {
-    document.body.classList.remove("closeness");
-    document.body.classList.add("whole-page");
+  let length = array1.length;
+
+  let numberOfErrors = length - howClose;
+  if (numberOfErrors === 0) {
+    pageStyle = "correct";
+  } else if (numberOfErrors === 1) {
+    pageStyle = "nearly";
+  } else if (numberOfErrors === 2) {
+    pageStyle = "closer";
+  } else {
+    pageStyle = "very-wrong";
   }
+  return pageStyle;
+};
+
+//Generates initial array for questions in 0,1 alternating sequence
+SideFunctions.initialArray = function (array) {
+  for (let i = 1; i < array.length; i++) {
+    if (i % 2 === 0) {
+      array[i] = 0;
+    } else {
+      array[i] = 1;
+    }
+  }
+  return array;
 };
 
 export { SideFunctions };
